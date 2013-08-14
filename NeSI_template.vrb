@@ -1,0 +1,33 @@
+\frametitle{Submitting a Job}
+%      \begin{block}{Job Description Example : MPI}
+\begin{verbatim}
+#!/bin/bash
+# Optimized for run parallel job of 512 Cores at NeSI (Pandora-SandyBridge)
+##########################################################################
+#@ job_name = LAMMPS_TEST
+#@ class = default
+#@ group = nesi
+#@ notification = never
+#@ account_no = uoa
+#@ wall_clock_limit = 00:30:00
+#@ resources = ConsumableMemory(4096mb) ConsumableVirtualMemory(4096mb)
+#@ job_type = MPICH
+#@ blocking = unlimited
+#@ node_usage = not_shared
+#@ output = $(job_name).$(jobid).out
+#@ error = $(job_name).$(jobid).err
+#@ requirements = (Feature=="sandybridge")
+#@ initialdir = /share/src/LAMMPS/lammps-12Aug13/bench
+#@ total_tasks = 512
+#@ queue
+##########################################################################
+module load lammps/12Aug13-sandybridge
+cd $SCRATCH_DIR
+cp /share/test/LAMMPS/* .
+###  Run the Parallel Program
+export OMP_NUM_THREADS=1
+MPIRUN lmp_mpi -var x 20 -var y 20 -var z 20 -in in.lj > lj-512.out
+###  Transfering the results to the home directory ($HOME)
+cp -pr $SCRATCH_DIR $HOME/OUT/lammps/
+\end{verbatim}
+%  \end{block}
