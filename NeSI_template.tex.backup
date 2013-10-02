@@ -25,8 +25,6 @@
 \setbeamercolor{block body alerted}{bg=white,fg=black}
 \setbeamercolor{alerted text}{bg=white,fg=black}
 
-\setbeameroption{show notes}
-
 \setbeamerfont{title}{size=\huge}
 \frenchspacing
 \hyphenation{NeSI}
@@ -380,7 +378,7 @@
   \end{block}
 }
 
-\note{Can the content of the node be changed by the image of the cpu's and the shared memory of a couple of slides further?}
+
 \frame[t]
 {
   \frametitle{Key Concepts}
@@ -513,7 +511,7 @@
    \end{itemize}
   \end{block}
 }
-\note{Why are the compute nodes connected with the earth? It's only the login node, and perhaps the build node that have access to the www.}
+
 \frame[t]
 {
   \frametitle{Using the Cluster}
@@ -530,14 +528,14 @@
   \frametitle{What to Expect}
       \begin{block}{Suitable Work}
    \begin{itemize}%[<+-| alert@+>]
-	\item Problems that can be solved with parallel processing.
-	\item Problems that consume large amounts of memory.
-	\item Problems that render your desktop useless for long periods of time.
+	\item Problems that can be solved with parallel processing
+	\item Problems that consume large amounts of memory
+	\item Problems that render your desktop useless for long periods of time
    \end{itemize}
   \end{block}
         \begin{block}{Less suited}
    \begin{itemize}%[<+-| alert@+>]
-	\item Windows only software (Work in progress).
+	\item Windows only software (Work in progress)
 	\item Interactive software, e.g.\ GUI, only available for development. 
    \end{itemize}
   \end{block}
@@ -558,7 +556,7 @@
   \end{block}
 }
 
-\subsection{Parallel speedup}
+\subsection{Amdahl's Law}
 
 \frame[t]
 {
@@ -580,19 +578,13 @@
 
 \frame[t]
 {
-   \begin{block}{Parallel execution time}
+   \begin{block}{Amdahl's Law}
    \begin{itemize}%[<+-| alert@+>]
 	\item Single core computation time: computation only.
 	\item Parallel computation time: computation + communication + waiting.
-	\item E.g.\ writing results (to one file) is often a bottleneck.
 	\item Small problem on many cores: communication cost will dominate.
 	\item Unbalanced load: one core will mainly wait on the other.
 	\item Conclusion: Test which number of cores is best suited for your problem. 
-   \end{itemize}
-  \end{block}
-     \begin{block}{Conclusion}
-   \begin{itemize}%[<+-| alert@+>]
-	\item Test which number of cores is best suited for your problem. 
    \end{itemize}
   \end{block}
 }
@@ -604,12 +596,11 @@
   \frametitle{Using the Cluster}
       \begin{block}{Data}
    \begin{itemize}%[<+-| alert@+>]
-	\item Upload input data to the login node for use on the cluster.
-	\item Download results from the login node to your local drive. 
-	\item The home directory has a rather small quota, project directories can be larger.
-	\item For long term storage and back-up, ask your IT department.
-	\item Things do go wrong, make sure to have a back-up.
-	\item Files on the login node are shared across the build and compute nodes
+	\item You need to upload data to the login node for use on the cluster
+	\item Home directory has limited quota space, but more can be requested.
+	\item Not an archive or long term storage
+	\item Backup important data elsewhere and download results after your job is finished
+	\item Files on the login node are shared across to the build and compute nodes
    \end{itemize}
 %   \begin{center}
 %   \includegraphics[width=125pt]{NeSI_img/kami23-doubtux.png}
@@ -622,14 +613,14 @@
 \frame[t]
 {
   \frametitle{Using the Cluster}
-      \begin{block}{Connection via SSH}
-      Each terminal client has its own way of using the Secure Shell (SSH) protocol
+      \begin{block}{Suggested Terminal Clients}
+      Each terminal client has it's own way of using the Secure Shell (SSH) protocol
         \begin{itemize}
         \item Windows: \href{http://mobaxterm.mobatek.net/}{mobaxterm}
         \item MacOSX: Terminal(Included in the OS), \href{http://www.iterm2.com/}{iTerm2}
         \item Linux: \href{http://konsole.kde.org/}{Konsole}, GnomeTerminal, \href{http://yakuake.kde.org/}{yakuake}
         \end{itemize}
-        On Unix based systems you need to do something like:\\ssh jbon007@login.nesi.org.nz
+        On Unix based systems you need to do something like:\\ssh myuserid@LOGINNODE
       \end{block}
 }
 
@@ -722,12 +713,12 @@
   \frametitle{Submitting a Job}
       \begin{block}{Basic Job Properties}
    \begin{itemize}%[<+-| alert@+>]
-	\item \textbf{Name} So you can identify the output later.
+	\item \textbf{Name} So you can identify it later
 	\item \textbf{Job Type} How many processes and how many threads?
 	%\item \textbf{Command} What command to execute on the cluster e.g "echo hello"
 	\item \textbf{Walltime} How long the job can run for. The job will be cancelled if the walltime is exceeded. 
-	\item \textbf{Memory} How much memory to use? Job will die if memory is exceeded.
-	\item \textbf{CPU cores} How many to use? Your program may try to use more than you request e.g.\ MATLAB.
+	\item \textbf{Memory} How much memory to use? Job will die if memory is exceeded
+	\item \textbf{CPU cores} How many to use? Your program may try to use more than you request e.g MATLAB
 	%\item \textbf{Files} You need to specify where additional files can be found and change references in your scripts
 	\item \textbf{Account or Group information} Especially important for access to licensed software and funded research allocations
 	\item \textbf{Emails} Notification of job starting, also scheduler errors.
@@ -761,8 +752,8 @@
   \frametitle{Submitting a Job}
       \begin{block}{Outputs}
    \begin{center}
-   \includegraphics[width=200pt]{NeSI_img/console.png}\\
-      Jobs have no interactive interface, but command line output and can write to files. Graphical tools are, however, available on the login and build/development nodes.
+   \includegraphics[width=250pt]{NeSI_img/console.png}\\
+      Jobs have no interactive interface, only command line output, but graphical tools are available on the login and build/development nodes.
    \end{center}      
   \end{block}
 }
@@ -773,10 +764,10 @@
   \frametitle{Submitting a Job}
       \begin{block}{Outputs}
    \begin{itemize}%[<+-| alert@+>]
-	\item Information output while the job runs is written to a text file.
-	\item Standard output goes to stdout, standard error goes to stderr.
-	\item These should have unique names for a given job directory (see job Name)
-	\item If your application writes to other files e.g.\ output data, that stays the same
+	\item Since there is no interactive terminal to display output, output it is written to a text file
+	\item Standard output goes to stdout, standard error goes to stderr
+	\item These should have unique names for a given job directory
+	\item If your application writes to other files e.g. output data, that stays the same
 	\item When your job fails, first look at stdout and stderr for clues
    \end{itemize}
   \end{block}
@@ -812,7 +803,7 @@
       \begin{block}{Quick Intro to LoadLeveler}
    \begin{itemize}%[<+-| alert@+>]
 	\item You need to access the login node and work from a terminal
-	\item Requires basic knowledge of the Linux command line:
+	\item Requires working knowledge of Linux command line:
    \begin{itemize}%[<+-| alert@+>]
 	\item How to navigate file system and edit files
 	\item Shell scripting is very useful for automation
