@@ -1,4 +1,4 @@
-\frametitle{Submitting a Job}
+\frametitle {Submitting a Job}
 %      \begin{block}{Job Description Example : MPI}
 \begin{verbatim}
 #!/bin/bash
